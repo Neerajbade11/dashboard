@@ -1,0 +1,6 @@
+.header-nav{
+    background-color: blue;
+}
+.active{
+    font-weight: var(--fw-bold);
+}

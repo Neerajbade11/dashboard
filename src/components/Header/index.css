@@ -1,0 +1,17 @@
+.nav-bar{
+    background-color: var(--bg-clr-primary);
+}
+.wrapper{
+    display: flex;
+    justify-content: space-between;
+    place-items: center;
+}
+
+.nav-content{
+    display: flex;
+    place-items: center;
+}
+.user-details{
+    display: flex;
+    align-items: center;
+}
