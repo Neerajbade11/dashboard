@@ -1,0 +1,25 @@
+.widget-card-item{
+    display: flex;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 0.8rem;
+    box-sizing: border-box;
+    flex-wrap: nowrap;
+   
+}
+
+
+.widget-remove-btn{
+    background: transparent;
+    border: none;
+    font-size: 1rem;
+}
+
+
+@media screen and (min-width:768px) {
+    .widget-card-item{
+        display: flex;
+        min-width: 400px;
+        min-height: 250px;
+    }
+}

@@ -10,7 +10,8 @@
   --bg-clr-secondry: #f9f9f9;
 
   --clr-primary: #2d2e32;
-  --clr-secondry: #555555;
+  --clr-secondary: #555555;
+  
 
   --fw-regular: 400;
   --fw-semi-bold: 500;
@@ -34,6 +35,10 @@ body{
   --max-width:100%;
   --padding:1rem;
 
-  width: min(var(--max-width), 100% - (var(--padding)* 2 ));
+  width: min(var(--max-width), 100% - (var(--padding)* 4 ));
   margin-inline: auto;
+}
+
+ul{
+  list-style-type: none;
 }

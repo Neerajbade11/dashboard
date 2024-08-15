@@ -1,6 +1,6 @@
 import { createContext, useState, useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
-import Category from "../Category";
+
 
 const EcommerceContext = createContext()
 
@@ -72,10 +72,31 @@ export const EcommerceProvider = ({children}) => {
         }
       ])
 
-    
+    const removeWidget = (categoryId, widgetId) => {
+      const updatedCategories = categories.map((eachCategory) => 
+        categoryId === eachCategory.id ?
+            {
+              ...eachCategory,
+              widgets: eachCategory.widgets.filter((eachWidget) => eachWidget.id !== widgetId)
+            } :
+            eachCategory
+          )
+      setCategories(updatedCategories)
+    }
+
+    const getCategoryIdByWidgetId = (widgetId) => {
+      for (const category of categories){
+        const existId = category.widgets.some((widget) => widget.id === widgetId)
+        if (existId){
+          return category.id
+        }
+       
+      }
+      return null
+    }
 
     return (
-        <EcommerceContext.Provider value={{categories,setCategories}}>
+        <EcommerceContext.Provider value={{categories, setCategories, removeWidget, getCategoryIdByWidgetId}}>
             {children}
         </EcommerceContext.Provider>
     )

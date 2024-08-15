@@ -1,0 +1,35 @@
+.category-container{
+    margin-block: 1rem;
+}
+
+.category-title{
+    font-size: clamp(1.3rem, 1.5658rem + -1.0127vw, 0.8rem);
+    font-weight: 600;
+   
+}
+
+.widget-list{
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-behavior: none;
+    
+}
+.widget-card-list{
+    padding: 0;
+}
+.add-widget{
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 0.4rem;
+    width: 270px !important;
+}
+
+@media screen and (min-width: 768px) {
+    .add-widget{
+        min-width: 400px;
+        min-height: 250px;
+    }
+     
+}

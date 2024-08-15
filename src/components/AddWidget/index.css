@@ -1,3 +1,7 @@
+.add-widget-section{
+    display: none;
+}
+
 .header-nav{
     background-color: blue;
 }

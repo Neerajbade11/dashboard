@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import {v4 as uuidv4} from 'uuid'
 import { useEcommerce } from '../EcommerceContext';
 import { AiOutlineClose } from "react-icons/ai";
 import './index.css';
 
 const AddWidget = () => {
-  const { categories, setCategories } = useEcommerce();
+  const { categories, setCategories} = useEcommerce();
+
   const [selectedCategoryId, setSelectedCategoryId] = useState(categories[0].id); 
 
 
@@ -25,6 +27,9 @@ const AddWidget = () => {
       return acc;
     }, {});
     setChecked(newCheckedState);
+    setNewWidgetName('')
+    setNewWidgetText('')
+    setShowWidgetForm(false)
   };
 
  
@@ -48,10 +53,47 @@ const AddWidget = () => {
     setCategories(updatedCategories);
   };
 
+  //set state to newWidgetForm
+  const [showWidgetForm, setShowWidgetForm] = useState(false)
+  const [newWidgetName, setNewWidgetName] = useState('')
+  const [newWidgetText, setNewWidgetText] = useState('')
+
+  const handleNewWidget = () => {
+    if (newWidgetName.trim()==='' || newWidgetText.trim()===''){
+      alert('Please fill in both the name and text fields.')
+      return ''
+    }
+
+    const newWidget = {
+      id :  uuidv4(),
+      name: newWidgetName,
+      text: newWidgetText
+    }
+
+    const updatedCategories = categories.map((category) => 
+      category.id === selectedCategoryId ? {
+        ...category,
+        widgets: [...category.widgets, newWidget]
+      } :
+      category
+    )
+
+    setChecked((prevChecked) => ({
+      ...prevChecked,
+      [newWidget.id] : true
+    }) )
+
+    setCategories(updatedCategories)
+    setNewWidgetName('')
+    setNewWidgetText('')
+    setShowWidgetForm(false)
+
+  }
+
   const selectedCategory = categories.find(category => category.id === selectedCategoryId);
 
   return (
-    <div>
+    <div className="add-widget-section">
       <div className='header-nav'>
         <p>Add Widget</p>
         <div>
@@ -60,7 +102,7 @@ const AddWidget = () => {
       </div>
       <div className='content'>
         <h3>Personalize your dashboard by adding the following widgets:</h3>
-        <ul>
+        <ul className="category-tab">
           {categories.map(category => (
             <li
               key={category.id}
@@ -85,8 +127,32 @@ const AddWidget = () => {
             </li>
           ))}
         </ul>
+        <div className="new-widget-form">
+           
+           {
+            showWidgetForm && (
+              <div>
+                  <input
+                    type='text'
+                    placeholder = "Widget Name"
+                    value={newWidgetName}
+                    onChange = {(e) => setNewWidgetName(e.target.value)}
+                  />
+                  <input
+                    type='text'
+                    placeholder = "Widget Text"
+                    value={newWidgetText}
+                    onChange = {(e) => setNewWidgetText(e.target.value)}
+                  />
+                  <button onClick={handleNewWidget} >Add Widget</button>
+              </div>
+
+            )
+           }
+           <button onClick={()=> setShowWidgetForm(!showWidgetForm)} >{showWidgetForm ? 'cancel' : 'Add New Widget'}</button>
+        </div>
         <button onClick={handleConfirm}>Confirm</button>
-        <button>Cancle</button>
+        <button  >Cancel</button>
       </div>
     </div>
   );
