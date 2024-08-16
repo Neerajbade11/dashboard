@@ -19,7 +19,11 @@ const Widget = ({widget}) => {
                 <h4 className='widget-name'>{name}</h4>
                 <p className='widget-text'>{text}</p>
             </div>
+            
+            <div>
             <button className='widget-remove-btn' type='button' onClick={handleRemoveWidget} ><AiOutlineClose /></button>
+            </div>
+           
         </li>
     )
     }

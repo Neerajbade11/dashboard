@@ -1,25 +1,69 @@
-.widget-card-item{
+.widget-card-item {
+    position: relative;
     display: flex;
-    padding: 2rem;
+    justify-content: space-between;
+    padding: 1rem;
     background-color: #fff;
     border-radius: 0.8rem;
     box-sizing: border-box;
-    flex-wrap: nowrap;
-   
+    font-size: clamp(1rem, 0.8937rem + 0.4051vw, 1.2rem);
+    flex-grow: 1;
+    position: relative;
+    min-width: 270px;
+    min-height: 160px;
+    flex-grow: 1;
+}
+
+.widget-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.widget-name{
+    font-size: clamp(0.4rem, -1.8rem + 14vw, 1.1rem);
+}
+
+.widget-content{
+    font-size: clamp(0.5rem, -4.7rem + 32vw, 0.9rem);
 }
 
 
-.widget-remove-btn{
+
+.widget-remove-btn {
     background: transparent;
     border: none;
-    font-size: 1rem;
+    font-size: 1.2rem;
+    top: 0.5rem;
+    right: 0.5rem;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+    .widget-card-item {
+        flex-direction: row;
+        padding: 2rem;
+        min-width: 400px;
+        height: 240px;
+        flex-grow: 1;
+    }
+    
 }
 
 
-@media screen and (min-width:768px) {
-    .widget-card-item{
-        display: flex;
-        min-width: 400px;
-        min-height: 250px;
+
+
+@media screen and (min-width: 1024px) {
+    .widget-card-item {
+        flex-direction: row;
+        padding: 2rem;
+        width: 400px;
+        height: 280px;
+        flex-grow: 1;
+    }
+    
+    .widget-remove-btn {
+        font-size: 1.5rem;
     }
 }
+

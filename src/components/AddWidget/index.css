@@ -1,10 +1,165 @@
-.add-widget-section{
+.add-widget-section {
+    background-color: #f9f9f9;
+    border-radius: 0.5rem;
+    position: fixed; 
+    z-index: 1111;
+    height: 100vh;
+    width: 300px; 
+    top: 0;
+    right: 0; 
+    transform: translateX(100%); 
+    transition: transform 0.3s ease-in-out; 
     display: none;
 }
 
-.header-nav{
-    background-color: blue;
+.add-widget-section.active {
+    display: block;
+    transform: translateX(0); 
 }
-.active{
-    font-weight: var(--fw-bold);
+
+.add-widget-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #14147d;
+    color: var(--bg-clr-primary);
+    padding: 0.4rem 1rem; 
+}
+
+.add-widget-title {
+    font-size: clamp(0.8rem, -4.4rem + 32vw, 1.2rem);
+    font-weight: 500;
+}
+
+.close-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #fff;
+}
+
+.add-widget-content {
+    padding-inline: 1rem;
+}
+
+.add-widget-subtitle {
+    font-size: clamp(0.7rem, -3.2rem + 24vw, 1rem);
+    padding-block: 1rem;
+}
+
+.category-tab {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    overflow-x: auto;
+}
+
+.category-tab-item {
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    
+}
+
+.category-name{
+    font-weight: 500;
+    font-size: clamp(0.78rem, -2.08rem + 17.6vw, 1rem);
+}
+
+.category-tab-item.active {
+    border-bottom: 4px solid #14147d;
+    color: #14147d;
+}
+
+.widget-list {
+    margin-bottom: 1rem;
+}
+
+.widget-item {
+    margin-bottom: 0.5rem;
+}
+
+.widget-label {
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.widget-checkbox {
+margin-right: 0.5rem;
+}
+
+.new-widget-form {
+margin-bottom: 1rem;
+}
+
+.new-widget-inputs {
+display: flex;
+flex-direction: column;
+gap: 0.5rem;
+margin-bottom: 1rem;
+}
+
+.new-widget-input {
+padding: 0.5rem;
+border: 1px solid #ccc;
+border-radius: 0.3rem;
+}
+
+.add-widget-btn {
+padding: 0.5rem 1rem;
+background-color: #007bff;
+color: white;
+border: none;
+border-radius: 0.3rem;
+cursor: pointer;
+transition: background-color 0.3s ease;
+}
+
+.add-widget-btn:hover {
+background-color: #0056b3;
+}
+
+.toggle-widget-form-btn {
+    padding: 0.5rem 1rem;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.toggle-widget-form-btn:hover {
+    background-color: #218838;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 0.4rem;
+    justify-content: flex-end;
+}
+
+.confirm-btn, .cancel-btn {
+    padding: 0.4rem 1.3rem;
+    background-color: transparent;
+    color: #14147d;
+    font-weight: 600;
+    border: 1.6px solid #14147d;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.confirm-btn:hover, .cancel-btn:hover {
+    background-color: #14147d;
+    color: #fff;
+}
+
+
+@media screen and (min-width:768px) {
+    .add-widget-section{
+        min-width: 768px;
+    }
+    
 }

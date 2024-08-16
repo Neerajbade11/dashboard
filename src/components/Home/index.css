@@ -1,0 +1,25 @@
+.home-section{
+    height: 100vh;
+    background-color: var(--bg-clr-secondry);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.dashboard-btn{
+    background-color: #fff;
+    border: 1px solid #14147d;
+    color: #000000;
+    padding: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+.dashboard-btn:hover{
+    background-color: #14147d;
+    color: #ffffff;
+}

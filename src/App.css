@@ -7,7 +7,7 @@
   --ff-secondary: "Mulish", sans-serif;
   
   --bg-clr-primary: #ffffff;
-  --bg-clr-secondry: #f9f9f9;
+  --bg-clr-secondry: #f0f5ff;
 
   --clr-primary: #2d2e32;
   --clr-secondary: #555555;
@@ -32,13 +32,36 @@ body{
 }
 
 .container{
-  --max-width:100%;
+  --max-width:1450px;
   --padding:1rem;
 
-  width: min(var(--max-width), 100% - (var(--padding)* 4 ));
+  width: min(var(--max-width), 100% - (var(--padding)* 2 ));
   margin-inline: auto;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  padding: 0.4rem;
+  font-size: clamp(0.8rem, 0.9595rem + -0.4076vw, 0.6rem);
+  font-weight: var(--fw-semi-bold);
+  color: var(--text-clr-secondary);
+  background-color: var(--bg-clr-primary);
+  border: 1px solid #b4b3b39c;
+  
+  border-radius: 4px;
+  cursor: pointer;
+  
+  
+}
+
+.icon-btn{
+  display: grid;
+  place-items: center;
+  padding: 0.2rem;
 }
 
 ul{
   list-style-type: none;
+  
 }
