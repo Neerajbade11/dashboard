@@ -15,12 +15,14 @@
 .dashboard-title {
     font-size: clamp(1.3rem, 1.5658rem + -1.0127vw, 0.8rem);
     font-weight: 600;
-    color: var(--clr-secondary);
+    color: var(--clr-primary);
 }
 
 .dashboard-actions {
     display: flex;
     gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 0.6rem;
 }
 
 
@@ -28,6 +30,59 @@
 .categories-list{
     padding: 0;
     margin: 0;
+}
+
+.span-btn-text{
+    font-family: var(--ff-primary);
+}
+
+.dashboard-btn{
+    display: flex;
+    align-items: center;
+    padding: 0.4rem;
+    font-size: clamp(0.8rem, 0.9595rem + -0.4076vw, 0.6rem);
+    font-weight: var(--fw-semi-bold);
+    color: var(--text-clr-secondary);
+    background-color: var(--bg-clr-primary);
+    border: 1px solid #14147d;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dashboard-btn:hover, .history-btn:hover{
+    background-color: #14147d;
+    color: #ffff;
+}
+
+.history-btn{
+    display: flex;
+    place-items: center;
+    border: 1px solid #14147d;
+    background-color: var(--bg-clr-primary);
+    border-radius: 4px;
+    justify-content: space-between;
+    cursor: pointer;
+    
+}
+
+.span-icon{
+    display: grid;
+    padding: 0.3rem;
+    border-right: 1px solid #14147d;
+    place-content: center;
+}
+
+.history-btn>*{
+    padding: 0.4rem;
+}
+
+.history-btn>:last-child{
+    border-right: 0;
+}
+
+.hide-btn{
+    display: none;
 }
 
 @media screen and (min-width:768px){
@@ -42,5 +97,8 @@
     }
     .dashboard-btn{
         padding: 0.5rem 0.8rem;
+    }
+    .hide-btn{
+        display: inline-block;
     }
 }

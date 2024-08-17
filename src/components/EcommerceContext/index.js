@@ -5,6 +5,8 @@ import { v4 as uuidv4 } from "uuid";
 const EcommerceContext = createContext()
 
 export const EcommerceProvider = ({children}) => {
+    const [searchCategoryWidget, setSearchCategoryWidget] = useState([])
+
     const [categories, setCategories] = useState([
         {
           id: uuidv4(),
@@ -73,7 +75,9 @@ export const EcommerceProvider = ({children}) => {
       ])
 
     const removeWidget = (categoryId, widgetId) => {
-      const updatedCategories = categories.map((eachCategory) => 
+      const categoriesToDisplay = searchCategoryWidget.length > 0 ? searchCategoryWidget : categories
+
+      const updatedCategories = categoriesToDisplay.map((eachCategory) => 
         categoryId === eachCategory.id ?
             {
               ...eachCategory,
@@ -81,7 +85,7 @@ export const EcommerceProvider = ({children}) => {
             } :
             eachCategory
           )
-      setCategories(updatedCategories)
+      setSearchCategoryWidget(updatedCategories)
     }
 
     const getCategoryIdByWidgetId = (widgetId) => {
@@ -95,8 +99,28 @@ export const EcommerceProvider = ({children}) => {
       return null
     }
 
+    const searchInputWidget = (searchInput) => {
+      const normalizedSearchInput = searchInput.toLowerCase().split(' ').join('');
+      let results = [];
+
+        for (const category of categories) {
+            const widgetSearch = category.widgets.filter((eachWidget) => eachWidget.name.toLowerCase().split(' ').join('') === normalizedSearchInput)
+            
+            if (widgetSearch.length > 0){
+                results.push(
+                  {
+                    ...category,
+                  widgets:[...widgetSearch]
+                  }
+                )
+              }      
+            }
+        setSearchCategoryWidget(results)
+      }
+    
+
     return (
-        <EcommerceContext.Provider value={{categories, setCategories, removeWidget, getCategoryIdByWidgetId}}>
+        <EcommerceContext.Provider value={{categories, setCategories, removeWidget, getCategoryIdByWidgetId, searchInputWidget, searchCategoryWidget}}>
             {children}
         </EcommerceContext.Provider>
     )

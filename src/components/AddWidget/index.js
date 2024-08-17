@@ -12,6 +12,21 @@ const AddWidget = ({ showAddWidgetForm, setShowAddWidgetForm, categoryId }) => {
   const [checked, setChecked] = useState({});
 
   useEffect(() => {
+    if (showAddWidgetForm) {
+      document.body.classList.add('no-scroll');
+    } else {
+      document.body.classList.remove('no-scroll');
+    }
+
+    return () => {
+      document.body.classList.remove('no-scroll'); 
+    };
+  }, [showAddWidgetForm]);
+
+  useEffect(() => {
+    
+   
+
     const category = categories.find(cat => cat.id === selectedCategoryId)
     const newCheckedState = category.widgets.reduce((acc,widget) => {
       acc[widget.id] = true;
@@ -91,78 +106,84 @@ const AddWidget = ({ showAddWidgetForm, setShowAddWidgetForm, categoryId }) => {
     setShowWidgetForm(false);
   };
 
+
   const selectedCategory = categories.find(category => category.id === selectedCategoryId);
 
   return (
-    <div className={`add-widget-section ${showAddWidgetForm && 'active'}`}>
-        <div className="add-widget-header ">
-          <p className="add-widget-title">Add Widget</p>
-          <button className="close-btn" onClick={() => setShowAddWidgetForm(false)}><AiOutlineClose /></button>
-        </div>
-        <div className="add-widget-content">
-          <p className="add-widget-subtitle">Personalize your dashboard by adding the following widgets:</p>
-          <ul className="category-tab">
-            {categories.map(category => (
-              <li
-                key={category.id}
-                className={`category-tab-item ${category.id === selectedCategoryId ? 'active' : ''}`}
-                onClick={() => handleCategoryClick(category.id)}
-              >
-                <p className='category-name'>{category.categoryName}</p>
-              </li>
-            ))}
-          </ul>
-          <ul className="add-widget-list">
-            {selectedCategory.widgets.map(widget => (
-              <li key={widget.id} className="widget-item">
-                <label className="widget-label">
-                  <input
-                    type="checkbox"
-                    id={`widget-checkbox ${widget.id}`}
-                    name={`widget-checkbox ${widget.id}`}
-                    className="widget-checkbox"
-                    checked={checked[widget.id] || false}
-                    onChange={() => handleCheckboxChange(widget.id)}
-                  />
-                  {widget.name}
-                </label>
-              </li>
-            ))}
-          </ul>
-          <div className="new-widget-form">
-            {showWidgetForm && (
-              <form className="new-widget-inputs" onSubmit={handleNewWidget}  >
-                <input
-                  type="text"
-                  placeholder="Widget Name"
-                  value={newWidgetName}
-                  onChange={(e) => setNewWidgetName(e.target.value)}
-                  className="new-widget-input"
-                />
-                <input
-                  type="text"
-                  placeholder = "Widget Text"
-                  value={newWidgetText}
-                  onChange={(e) => setNewWidgetText(e.target.value)}
-                  className="new-widget-input"
-                />
-                <button type='submit' className="add-widget-btn">Add Widget</button>
-              </form>
-            )}
-            <button onClick={() => setShowWidgetForm(!showWidgetForm)} className="toggle-widget-form-btn">
-              {showWidgetForm ? 'Cancel' : 'Add New Widget'}
-            </button>
+    <section className={`add-widget-section ${showAddWidgetForm && 'active'}`}>
+        
+          <div className="add-widget-header ">
+            <p className="add-widget-title">Add Widget</p>
+            <div>
+              <button className="close-btn" onClick={() => setShowAddWidgetForm(false)}><AiOutlineClose /></button>
+            </div>
           </div>
-          <div className="action-buttons">
-            <button className="cancel-btn" onClick={() => {
-              setShowAddWidgetForm(false)
-              setShowWidgetForm(false)
-            }}>Cancel</button>
-            <button onClick={handleConfirm} className="confirm-btn">Confirm</button>
-        </div>
-        </div>
-       
-    </div>
+          <div className="add-widget-content">
+            <p className="add-widget-subtitle">Personalize your dashboard by adding the following widgets:</p>
+            <ul className="category-tab">
+              {categories.map(category => (
+                <li
+                  key={category.id}
+                  className={`category-tab-item ${category.id === selectedCategoryId ? 'active' : ''}`}
+                  onClick={() => handleCategoryClick(category.id)}
+                >
+                  <p className='category-name'>{category.categoryName}</p>
+                </li>
+              ))}
+            </ul>
+            <ul className="add-widget-list">
+              {selectedCategory.widgets.map(widget => (
+                <li key={widget.id} className="widget-item">
+                  <label className="widget-label">
+                    <input
+                      type="checkbox"
+                      id={`widget-checkbox ${widget.id}`}
+                      name={`widget-checkbox ${widget.id}`}
+                      className="widget-checkbox"
+                      checked={checked[widget.id] || false}
+                      onChange={() => handleCheckboxChange(widget.id)}
+                    />
+                    {widget.name}
+                  </label>
+                </li>
+              ))}
+            </ul>
+            <div className="new-widget-form">
+              {showWidgetForm && (
+                <form className="new-widget-inputs" onSubmit={handleNewWidget}  >
+                  <input
+                    type="text"
+                    placeholder="Widget Name"
+                    value={newWidgetName}
+                    onChange={(e) => setNewWidgetName(e.target.value)}
+                    className="new-widget-input"
+                  />
+                  <input
+                    type="text"
+                    placeholder = "Widget Text"
+                    value={newWidgetText}
+                    onChange={(e) => setNewWidgetText(e.target.value)}
+                    className="new-widget-input"
+                  />
+                  <button type='submit' className="add-widget-btn">Add Widget</button>
+                </form>
+              )}
+              <button onClick={() => setShowWidgetForm(!showWidgetForm)} className="toggle-widget-form-btn">
+                {showWidgetForm ? 'Cancel' : 'Add New Widget'}
+              </button>
+            </div>
+            
+          </div>
+          
+
+        <div className="action-buttons">
+              <button className="cancel-btn" onClick={() => {
+                setShowAddWidgetForm(false)
+                setShowWidgetForm(false)
+              }}>Cancel</button>
+              <button onClick={handleConfirm} className="confirm-btn">Confirm</button>
+          </div>
+    </section>
   );
 };
 

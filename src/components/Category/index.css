@@ -8,6 +8,12 @@
    
 }
 
+.span-add-icon{
+    display: grid;
+    padding: 0.3rem;
+    place-content: center;
+}
+
 .widget-list{
     display: flex;
     gap: 0.6rem;
@@ -15,7 +21,7 @@
     scrollbar-width: none;
 }
 .widget-list::-webkit-scrollbar {
-    display: none; /* WebKit browsers */
+    display: none; 
 }
 
 .widget-card-list{

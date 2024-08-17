@@ -21,6 +21,11 @@
     gap: 1rem;
 }
 
+.navigation-title{
+    color: #14147d;
+    font-weight: 600;
+}
+
 .search-bar-container{
     display: none;
 }

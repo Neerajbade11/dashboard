@@ -4,7 +4,7 @@ import Widget from '../Widget';
 import { AiOutlinePlus } from "react-icons/ai";
 import './index.css';
 
-const Category = ({id, name, widgets}) => {
+const Category = ({id, name, widgets, searchCategoryWidget}) => {
   
   const [showAddwidgetForm, setShowAddWidgetForm] = useState(false);
 
@@ -13,11 +13,13 @@ const Category = ({id, name, widgets}) => {
       <h1 className='category-title'>{name}</h1>
       <ul className='widget-list'>
         {widgets.map(eachWidget => <Widget key={eachWidget.id} widget={eachWidget} />)}
-        <div className='add-widget'>
-          <button onClick={() => setShowAddWidgetForm(!showAddwidgetForm)} type='button' className='btn'>
-            <span className='icon-btn'><AiOutlinePlus /></span> Add widget
+        {
+          searchCategoryWidget.length >0 ? '' : <div className='add-widget'>
+          <button onClick={() => setShowAddWidgetForm(!showAddwidgetForm)} type='button' className='history-btn'>
+            <span className='span-add-icon' ><AiOutlinePlus /></span> <span className="span-btn-text">Add widget</span>
           </button>
         </div>
+        }
       </ul>
       { 
         showAddwidgetForm && <AddWidget showAddWidgetForm={showAddwidgetForm} setShowAddWidgetForm = {setShowAddWidgetForm} categoryId = {id} />

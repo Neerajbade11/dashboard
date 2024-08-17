@@ -21,7 +21,7 @@ const Widget = ({widget}) => {
             </div>
             
             <div>
-            <button className='widget-remove-btn' type='button' onClick={handleRemoveWidget} ><AiOutlineClose /></button>
+                <button className='widget-remove-btn' type='button' onClick={handleRemoveWidget} ><AiOutlineClose /></button>
             </div>
            
         </li>

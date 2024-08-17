@@ -10,7 +10,7 @@ const Header = () => {
     const [menuVisible, setMenuVisible] = useState(false)
     const [searchInput, setSearchInput] = useState('')
     
-    const {categories} = useEcommerce()
+    const {searchInputWidget} = useEcommerce()
     const location = useLocation()
 
     const toggleMenu = () => {
@@ -18,30 +18,16 @@ const Header = () => {
     }
 
     const handleKey = (e) => {
-        if (e.key === "Enter") {
-            const normalizedSearchInput = searchInput.toLowerCase().split(' ').join('');
-            let foundWidgets = [];
-    
-            for (const category of categories) {
-                const widgetSearch = category.widgets.filter((eachWidget) => 
-                    eachWidget.name.toLowerCase().split(' ').join('') === normalizedSearchInput
-                );
-    
-                if (widgetSearch.length > 0) {
-                    foundWidgets = foundWidgets.concat(widgetSearch,`categoryId: ${category.id}`);
-                }
-            }
-    
-            
-            console.log(foundWidgets); 
-        }
+        const value = e.target.value;
+        setSearchInput(value);
+        searchInputWidget(value);
     }
     const getTitle = () => {
         switch (location.pathname) {
             case '/Dashboard':
-                return 'Home>Dashboard'
+                return '> Dashboard'
             default:
-                return 'Home'
+                return ''
         }
     }
 
@@ -52,7 +38,7 @@ const Header = () => {
             <div className='container'>
                 <div className='nav-wrapper'>
                     <div className='nav-title'>
-                        <p>{getTitle()}</p>
+                        <p>Home <span className='navigation-title hide-btn' >{`${getTitle()}`}</span></p>
                     </div>
                     <div className='nav-content'>
                         <div className="search-bar-container">

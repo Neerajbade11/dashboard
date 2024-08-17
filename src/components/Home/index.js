@@ -7,7 +7,7 @@ const Home = () => {
     <section className='home-section'>
         
             <div className='home-content'>
-                <Link to='/Dashboard' ><button type='button' className='dashboard-btn' > Go To Dashboard</button></Link>
+                <Link to='/Dashboard' ><button type='button' className='go-to-btn' > Go To Dashboard</button></Link>
             </div>
         
     </section>
